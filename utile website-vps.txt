@@ -3,8 +3,9 @@ domeniu: la dns se trec nameserverele provider-ului unde se afla serverul
 server: de instalat: java, ?tomcat9, mysql, git, 
 	setari: https://csns.calstatela.edu/wiki/content/cysun/notes/set_up_ubuntu
 
+APLICATII FOLOSITOARE DEZVOLTARE APP WEB: POSTMAN(soft simulare request-uri), Atom/VISUAL STUDIO CODE(editor html), XnView(micsorare marime foto)
 
-
+APLICATII FOLOSITOARE SERVER: Putty(terminal remote), WinSCP(soft FTP)
 
 
 Apache2: site: https://ubuntu.com/tutorials/install-and-configure-apache#1-overview
@@ -20,10 +21,22 @@ UBUNTU	verificare update: sudo apt update
 	instalare toate update-urile: sudo apt ugrade
 	restart: reboot
 	iesire din aplicatie pornita, cand consola nu mai raspunde: CTRL C
+	lista update-uri: apt list --upgradable
+	deschidere doc:  vi /etc/tomcat9/tomcat-users.xml
+	documente:
+		edit/insert in doc: F12
+		iesire mod insert: ESC
+		salvare si iesire: :wq + enter
+	schimbare cale: cd nume_folder
+	schimbare cale -1: cd ../
+	lista dosare: dir
+	
+	
 	
 
 TOMCAT:
 	instalare: sudo apt install tomcat9
+	restart tomcat:  sudo systemctl restart tomcat9
 	dupa: modificare credentiale si gestionare manager/admin din fisierul:root/etc/tomcat9/tomcat-users.xml
 	adaugare una din variantele de mai jos:
 		--->
@@ -40,12 +53,18 @@ JAVA
 	oprire app java:  pkill -f numeapp.jar
 	oprire all java:  killall -9 java
 	modificat portul din java applicatie: server.port=80 in fisierul .properties
+	lista aplicatii pornite: ps -fC java
 
-MAVEN: sudo apt install maven
+MAVEN:  tutorial: https://linuxize.com/post/how-to-install-apache-maven-on-ubuntu-18-04/
+	sudo apt install maven
+	daca se vrea instalarea java in acest moment: sudo apt install default-jdk
 
 
-MYSQL
-	instalare:  sudo apt install mysql-server
+MYSQL	tutorial: https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04
+	instalare:  sudo apt install mysql-server sau systemctl status mysql.service
+	initializare:  mysql --initialize
+	restart db server: sudo service mysql restart
+	instalare server:  sudo apt install mysql-server
 		-dupa  instalare, pt conectarea dintr-un client trebuie creat un user nou cu toate privilegiile
 			-CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
 		 	-GRANT ALL PRIVILEGES ON * . * TO 'newuser'@'localhost';
@@ -55,3 +74,6 @@ MYSQL
 			-setare cautata: bind-address= 159.65.117.97
 	intrare mysql: mysql -u root -p
 	iesire din query: /versions;enter;enter;enter;\c;exit
+
+GIT: instalare: sudo apt install git-all
+
