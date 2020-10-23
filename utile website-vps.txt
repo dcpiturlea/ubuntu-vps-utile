@@ -1,0 +1,57 @@
+domeniu: la dns se trec nameserverele provider-ului unde se afla serverul
+	-exemplu: domeniu la romarg,  setari dns trecem nserverele de la digitalocean(ns1.digitalocean.com, ns2, ns3)
+server: de instalat: java, ?tomcat9, mysql, git, 
+	setari: https://csns.calstatela.edu/wiki/content/cysun/notes/set_up_ubuntu
+
+
+
+
+
+Apache2: site: https://ubuntu.com/tutorials/install-and-configure-apache#1-overview
+	 instalare: sudo apt install apache2 
+	 o pagina de intampinare ruleaza pe portul default 80: https://websiteforstudents.com/change-apache2-http-default-port-on-ubuntu-16-04-17-10-18-04/
+	 pentru a putea rula alta aplicatie pe portul 80 trebuie sa schimbam portul default apache in 3 locatii:
+		-sudo nano /etc/apache2/ports.conf, aici modificam: Listen 80 in altceva
+		-sudo nano /etc/apache2/sites-available/000-default.conf, aici modificam: <VirtualHost *:80> in altceva
+		-sudo nano /etc/apache2/sites-available/default-ssl.conf, aici modificam: <VirtualHost default:443> in 444
+	restart apache: sudo systemctl restart apache2.service
+
+UBUNTU	verificare update: sudo apt update
+	instalare toate update-urile: sudo apt ugrade
+	restart: reboot
+	iesire din aplicatie pornita, cand consola nu mai raspunde: CTRL C
+	
+
+TOMCAT:
+	instalare: sudo apt install tomcat9
+	dupa: modificare credentiale si gestionare manager/admin din fisierul:root/etc/tomcat9/tomcat-users.xml
+	adaugare una din variantele de mai jos:
+		--->
+		<role rolename="manager-gui"/>
+		<user username="dcpiturlea" password="orice_parola" roles="manager-gui"/>
+
+		<!--<role rolename="admin-gui"/>
+		<user username="dcpiturlea" password="orice_parola" roles="admin-gui"/>
+		-->
+
+JAVA
+	instalare: sudo apt install openjdk-11-jdk-headless
+	pornire java app: java -jar numeapp.jar&
+	oprire app java:  pkill -f numeapp.jar
+	oprire all java:  killall -9 java
+	modificat portul din java applicatie: server.port=80 in fisierul .properties
+
+MAVEN: sudo apt install maven
+
+
+MYSQL
+	instalare:  sudo apt install mysql-server
+		-dupa  instalare, pt conectarea dintr-un client trebuie creat un user nou cu toate privilegiile
+			-CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+		 	-GRANT ALL PRIVILEGES ON * . * TO 'newuser'@'localhost';
+		 	-FLUSH PRIVILEGES;
+		-intr-un fisier din server este trecut ip-ul default. acesta trebuie inlocuit cu ip-ul serverului
+		 	-locatie: root/etc/mysql/mysql.conf.d/mysqld.cnf
+			-setare cautata: bind-address= 159.65.117.97
+	intrare mysql: mysql -u root -p
+	iesire din query: /versions;enter;enter;enter;\c;exit
