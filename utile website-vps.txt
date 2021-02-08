@@ -74,6 +74,7 @@ MYSQL	tutorial: https://www.digitalocean.com/community/tutorials/how-to-install-
 			-setare cautata: bind-address= 159.65.117.97
 	intrare mysql: mysql -u root -p
 	iesire din query: /versions;enter;enter;enter;\c;exit
+	server restart: sudo service mysql restart
 
 GIT: instalare: sudo apt install git-all
 
