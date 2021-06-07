@@ -46,6 +46,9 @@ TOMCAT:
 		<!--<role rolename="admin-gui"/>
 		<user username="dcpiturlea" password="orice_parola" roles="admin-gui"/>
 		-->
+	stergere: 	sudo apt remove --purge tomcat8 tomcat8-docs
+			sudo apt autoremove
+			sudo apt autoclean
 
 JAVA
 	instalare: sudo apt install openjdk-11-jdk-headless
