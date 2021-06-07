@@ -16,6 +16,7 @@ Apache2: site: https://ubuntu.com/tutorials/install-and-configure-apache#1-overv
 		-sudo nano /etc/apache2/sites-available/000-default.conf, aici modificam: <VirtualHost *:80> in altceva
 		-sudo nano /etc/apache2/sites-available/default-ssl.conf, aici modificam: <VirtualHost default:443> in 444
 	restart apache: sudo systemctl restart apache2.service
+	stergere: sudo apt-get remove apache2*
 
 UBUNTU	verificare update: sudo apt update
 	instalare toate update-urile: sudo apt ugrade
